@@ -299,14 +299,17 @@ def find_personal_info(password: str, personal: list[str]) -> list[Match]:
     return matches
 
 
-def find_all_matches(password: str) -> list[Match]:
-    return (
+def find_all_matches(password: str, personal: list[str] | None = None) -> list[Match]:
+    matches = (
         find_dictionary_words(password)
         + find_sequences(password)
         + find_repeats(password)
         + find_keyboard_patterns(password)
         + find_dates(password)
     )
+    if personal:
+        matches += find_personal_info(password, personal)
+    return matches
 
 
 def select_matches(password: str, matches: list[Match]) -> list[Match]:
@@ -333,7 +336,7 @@ def select_matches(password: str, matches: list[Match]) -> list[Match]:
 # Fő értékelő függvény
 # ---------------------------------------------------------------------------
 
-def estimate_entropy(password: str) -> tuple[float, float, list[Match]]:
+def estimate_entropy(password: str, personal: list[str] | None = None) -> tuple[float, float, list[Match]]:
     """Visszaadja: (effektív entrópia, naiv entrópia, felhasznált minták)."""
     if not password:
         return 0.0, 0.0, []
@@ -347,7 +350,7 @@ def estimate_entropy(password: str) -> tuple[float, float, list[Match]]:
         bits = math.log2(rank + 2) + _case_bits(password)
         return bits, naive, [Match("gyakori jelszó", 0, len(password), password, bits)]
 
-    chosen = select_matches(password, find_all_matches(password))
+    chosen = select_matches(password, find_all_matches(password, personal))
     covered = sum(m.length for m in chosen)
     entropy = sum(m.bits for m in chosen) + (len(password) - covered) * char_bits
     # minden minta után a támadónak "ki kell találnia" a szerkezetet is
@@ -364,9 +367,9 @@ def classify_entropy(entropy: float, length: int) -> int:
     return 2
 
 
-def evaluate(password: str) -> RuleResult:
+def evaluate(password: str, personal: list[str] | None = None) -> RuleResult:
     """Egy jelszó teljes szabályalapú értékelése."""
-    entropy, naive, matches = estimate_entropy(password)
+    entropy, naive, matches = estimate_entropy(password, personal)
     level = classify_entropy(entropy, len(password)) if password else 0
     score = int(round(min(100.0, entropy / 90.0 * 100.0)))
 
@@ -393,6 +396,7 @@ def evaluate(password: str) -> RuleResult:
               bool(password) and not ({"sorozat", "billentyűzetminta"} & kinds)),
         Check("Nincs ismétlődés", bool(password) and "ismétlés" not in kinds),
         Check("Nincs évszám vagy dátum", bool(password) and not ({"évszám", "dátum"} & kinds)),
+        Check("Nincs személyes adat", bool(password) and "személyes adat" not in kinds),
     ]
 
     warnings: list[str] = []
@@ -424,8 +428,8 @@ def evaluate(password: str) -> RuleResult:
                 warnings.append(f"Billentyűzetminta: „{m.token}”.")
             elif m.kind == "ismétlés":
                 warnings.append(f"Ismétlődés: „{m.token}”.")
-            elif m.kind in ("évszám", "dátum"):
-                warnings.append(f"{m.kind.capitalize()}: „{m.token}” – a személyes dátumok könnyen kitalálhatók.")
+            elif m.kind == "személyes adat":
+                warnings.append(f"Személyes adat: „{m.token}” – aki ismer téged, elsőként ezt próbálja.")
         missing = [name for name, ok in (("nagybetű", has_upper), ("számjegy", has_digit),
                                          ("speciális karakter", has_special)) if not ok]
         if missing and level < 2:
