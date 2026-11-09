@@ -77,3 +77,26 @@ def test_checklist_and_suggestions():
     r = evaluate("abc")
     assert any(not c.passed for c in r.checks)
     assert r.warnings and r.suggestions
+
+
+def test_personal_info_detected():
+    r = evaluate("Kovacs1999!", personal=["Kovács", "1999"])
+    assert any(m.kind == "személyes adat" for m in r.matches)
+    assert any("Személyes adat" in w for w in r.warnings)
+
+
+def test_personal_info_lowers_entropy():
+    pw = "Barnabas#Qx7"
+    without = evaluate(pw).entropy_bits
+    with_info = evaluate(pw, personal=["Barnabás"]).entropy_bits
+    assert with_info < without
+
+
+def test_personal_birth_date_with_separators():
+    r = evaluate("anna19990415", personal=["1999.04.15"])
+    assert any(m.kind == "személyes adat" for m in r.matches)
+
+
+def test_no_personal_info_given():
+    r = evaluate("Kovacs1999!")
+    assert not any(m.kind == "személyes adat" for m in r.matches)
