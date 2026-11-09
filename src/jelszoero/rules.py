@@ -428,6 +428,8 @@ def evaluate(password: str, personal: list[str] | None = None) -> RuleResult:
                 warnings.append(f"Billentyűzetminta: „{m.token}”.")
             elif m.kind == "ismétlés":
                 warnings.append(f"Ismétlődés: „{m.token}”.")
+            elif m.kind in ("évszám", "dátum"):
+                warnings.append(f"{m.kind.capitalize()}: „{m.token}” – a személyes dátumok könnyen kitalálhatók.")
             elif m.kind == "személyes adat":
                 warnings.append(f"Személyes adat: „{m.token}” – aki ismer téged, elsőként ezt próbálja.")
         missing = [name for name, ok in (("nagybetű", has_upper), ("számjegy", has_digit),

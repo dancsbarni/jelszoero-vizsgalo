@@ -100,3 +100,8 @@ def test_personal_birth_date_with_separators():
 def test_no_personal_info_given():
     r = evaluate("Kovacs1999!")
     assert not any(m.kind == "személyes adat" for m in r.matches)
+    
+
+def test_year_warning_present():
+    r = evaluate("Macska2024!")
+    assert any("Évszám" in w for w in r.warnings)
