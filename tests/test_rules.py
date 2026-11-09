@@ -105,3 +105,19 @@ def test_no_personal_info_given():
 def test_year_warning_present():
     r = evaluate("Macska2024!")
     assert any("Évszám" in w for w in r.warnings)
+
+def test_wordlist_files_are_loaded():
+    from jelszoero.wordlists import COMMON_PASSWORDS
+    assert len(COMMON_PASSWORDS) > 1000
+    assert "starcraft" in COMMON_PASSWORDS
+    assert not any(w.startswith("#") for w in COMMON_PASSWORDS)
+
+
+def test_load_wordlist_missing_file():
+    from jelszoero.wordlists import load_wordlist
+    assert load_wordlist("nincs_ilyen_fajl.txt") == []
+
+
+def test_own_dictionary_word_detected():
+    r = evaluate("Balaton2024!")
+    assert any(m.kind == "szótári szó" and m.token == "Balaton" for m in r.matches)
