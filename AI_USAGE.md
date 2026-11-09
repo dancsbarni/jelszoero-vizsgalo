@@ -70,7 +70,7 @@ munkával felépítenem.
 - Átnéztem és megértettem a `rules.py` entrópiaszámítását és a mohó mintakiválasztást.
 - Saját jelszavakkal kipróbáltam, hogy a szabályalapú értékelés ésszerű-e.
 - Ellenőriztem az adathalmazon, hogy a címke valóban csak a hossztól függ.
-- Saját bővítés(ek): személyes adatok keresése, nagyobb szólista, keresztvalidáció
+- Saját bővítés(ek): személyes adatok keresése, nagyobb szólista (a magyar szótárat én állítottam össze)
 
 ## Tanulságok
 
