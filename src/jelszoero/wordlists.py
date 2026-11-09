@@ -102,3 +102,28 @@ KEYBOARD_ROWS = [
     "1qaz2wsx3edc4rfv5tgb6yhn",
     "1q2w3e4r5t6y7u8i9o0p",
 ]
+
+from pathlib import Path  # noqa: E402
+
+WORDLIST_DIR = Path(__file__).resolve().parent / "assets" / "wordlists"
+
+
+def load_wordlist(filename: str) -> list[str]:
+    """Szólista beolvasása: soronként egy szó, a # kezdetű sorok megjegyzések.
+
+    Ha a fájl nem létezik, üres listát ad vissza, így a program a beépített
+    listákkal is működik.
+    """
+    path = WORDLIST_DIR / filename
+    if not path.exists():
+        return []
+    words = []
+    with path.open(encoding="utf-8", errors="ignore") as fh:
+        for line in fh:
+            word = line.strip().lower()
+            if word and not word.startswith("#"):
+                words.append(word)
+    return words
+
+COMMON_PASSWORDS = list(dict.fromkeys(COMMON_PASSWORDS + load_wordlist("common_passwords.txt")))
+DICTIONARY_WORDS = list(dict.fromkeys(DICTIONARY_WORDS + load_wordlist("dictionary.txt")))
