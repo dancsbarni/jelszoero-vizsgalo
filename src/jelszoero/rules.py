@@ -279,6 +279,26 @@ def find_dates(password: str) -> list[Match]:
     return matches
 
 
+def find_personal_info(password: str, personal: list[str]) -> list[Match]:
+    """A felhasználó személyes adatainak (név, dátum) keresése a jelszóban."""
+    matches: list[Match] = []
+    norm = normalize(password)
+    for item in personal:
+        variants = {normalize(item)}
+        digits = "".join(c for c in item if c.isdigit())
+        if digits:
+            variants.add(normalize(digits))   # pl. "1999.04.15" -> "19990415"
+        for variant in variants:
+            if len(variant) < 3:
+                continue
+            start = norm.find(variant)
+            while start != -1:
+                end = start + len(variant)
+                matches.append(Match("személyes adat", start, end, password[start:end], 1.0))
+                start = norm.find(variant, start + 1)
+    return matches
+
+
 def find_all_matches(password: str) -> list[Match]:
     return (
         find_dictionary_words(password)
