@@ -1,0 +1,463 @@
+{
+  "trained_at": "2026-11-05T11:05:03",
+  "data_source": "/tmp/claude-0/-home-claude/65c4d6c8-388b-58d8-875d-ad4234328a76/scratchpad/dl/Password-Strength-Detection/password_data.csv",
+  "n_samples": 200001,
+  "n_train": 160000,
+  "n_test": 40001,
+  "class_distribution": {
+    "Gyenge": 26782,
+    "Közepes": 148326,
+    "Erős": 24893
+  },
+  "best_model": "Random Forest (jellemzők)",
+  "models": [
+    {
+      "name": "Random Forest (jellemzők)",
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "train_seconds": 27.54,
+      "predict_ms_per_1000": 141.8,
+      "confusion": [
+        [
+          5356,
+          0,
+          0
+        ],
+        [
+          0,
+          29666,
+          0
+        ],
+        [
+          0,
+          0,
+          4979
+        ]
+      ],
+      "report": {
+        "Gyenge": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5356.0
+        },
+        "Közepes": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 29666.0
+        },
+        "Erős": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4979.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
+        }
+      }
+    },
+    {
+      "name": "Döntési fa (jellemzők)",
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "train_seconds": 20.69,
+      "predict_ms_per_1000": 126.15,
+      "confusion": [
+        [
+          5356,
+          0,
+          0
+        ],
+        [
+          0,
+          29666,
+          0
+        ],
+        [
+          0,
+          0,
+          4979
+        ]
+      ],
+      "report": {
+        "Gyenge": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5356.0
+        },
+        "Közepes": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 29666.0
+        },
+        "Erős": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4979.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
+        }
+      }
+    },
+    {
+      "name": "Logisztikus regresszió (jellemzők)",
+      "accuracy": 0.9997500062498438,
+      "precision": 0.9994150027114915,
+      "recall": 0.9998319262843762,
+      "f1": 0.9996233405995122,
+      "train_seconds": 22.46,
+      "predict_ms_per_1000": 127.18,
+      "confusion": [
+        [
+          5356,
+          0,
+          0
+        ],
+        [
+          6,
+          29657,
+          3
+        ],
+        [
+          0,
+          1,
+          4978
+        ]
+      ],
+      "report": {
+        "Gyenge": {
+          "precision": 0.9988810145468109,
+          "recall": 1.0,
+          "f1-score": 0.9994401940660571,
+          "support": 5356.0
+        },
+        "Közepes": {
+          "precision": 0.9999662822847124,
+          "recall": 0.9996966223960089,
+          "f1-score": 0.9998314341581822,
+          "support": 29666.0
+        },
+        "Erős": {
+          "precision": 0.9993977113029512,
+          "recall": 0.9997991564571199,
+          "f1-score": 0.9995983935742971,
+          "support": 4979.0
+        },
+        "accuracy": 0.9997500062498438,
+        "macro avg": {
+          "precision": 0.9994150027114915,
+          "recall": 0.9998319262843762,
+          "f1-score": 0.9996233405995122,
+          "support": 40001.0
+        },
+        "weighted avg": {
+          "precision": 0.9997501974637731,
+          "recall": 0.9997500062498438,
+          "f1-score": 0.9997500414179862,
+          "support": 40001.0
+        }
+      }
+    },
+    {
+      "name": "Logisztikus regresszió (TF-IDF n-gram)",
+      "accuracy": 0.8868028299292517,
+      "precision": 0.8815117326640224,
+      "recall": 0.7513779534200946,
+      "f1": 0.7925497269676925,
+      "train_seconds": 18.37,
+      "predict_ms_per_1000": 25.31,
+      "confusion": [
+        [
+          2169,
+          3161,
+          26
+        ],
+        [
+          502,
+          28957,
+          207
+        ],
+        [
+          3,
+          629,
+          4347
+        ]
+      ],
+      "report": {
+        "Gyenge": {
+          "precision": 0.8111443530291698,
+          "recall": 0.4049663928304705,
+          "f1-score": 0.5402241594022416,
+          "support": 5356.0
+        },
+        "Közepes": {
+          "precision": 0.8842642074083122,
+          "recall": 0.9761005865300344,
+          "f1-score": 0.9279156585967667,
+          "support": 29666.0
+        },
+        "Erős": {
+          "precision": 0.9491266375545852,
+          "recall": 0.873066880899779,
+          "f1-score": 0.9095093629040695,
+          "support": 4979.0
+        },
+        "accuracy": 0.8868028299292517,
+        "macro avg": {
+          "precision": 0.8815117326640224,
+          "recall": 0.7513779534200946,
+          "f1-score": 0.7925497269676925,
+          "support": 40001.0
+        },
+        "weighted avg": {
+          "precision": 0.882547252823267,
+          "recall": 0.8868028299292517,
+          "f1-score": 0.8737139982397802,
+          "support": 40001.0
+        }
+      }
+    },
+    {
+      "name": "Alapmodell: döntési fa (csak hossz)",
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "train_seconds": 0.49,
+      "predict_ms_per_1000": 1.46,
+      "confusion": [
+        [
+          5356,
+          0,
+          0
+        ],
+        [
+          0,
+          29666,
+          0
+        ],
+        [
+          0,
+          0,
+          4979
+        ]
+      ],
+      "report": {
+        "Gyenge": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5356.0
+        },
+        "Közepes": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 29666.0
+        },
+        "Erős": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4979.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
+        }
+      }
+    }
+  ],
+  "rule_based": {
+    "name": "Szabályalapú (entrópia + minták)",
+    "accuracy": 0.8470038249043774,
+    "precision": 0.7589587025763441,
+    "recall": 0.9272231716768712,
+    "f1": 0.8121820950309057,
+    "train_seconds": 0.0,
+    "predict_ms_per_1000": 183.62,
+    "confusion": [
+      [
+        5356,
+        0,
+        0
+      ],
+      [
+        4049,
+        23618,
+        1999
+      ],
+      [
+        6,
+        66,
+        4907
+      ]
+    ],
+    "report": {
+      "Gyenge": {
+        "precision": 0.5691212411008394,
+        "recall": 1.0,
+        "f1-score": 0.7254012324778222,
+        "support": 5356.0
+      },
+      "Közepes": {
+        "precision": 0.9972133085627428,
+        "recall": 0.7961302501179802,
+        "f1-score": 0.885398313027179,
+        "support": 29666.0
+      },
+      "Erős": {
+        "precision": 0.7105415580654504,
+        "recall": 0.9855392649126331,
+        "f1-score": 0.8257467395877156,
+        "support": 4979.0
+      },
+      "accuracy": 0.8470038249043774,
+      "macro avg": {
+        "precision": 0.7589587025763441,
+        "recall": 0.9272231716768712,
+        "f1-score": 0.8121820950309057,
+        "support": 40001.0
+      },
+      "weighted avg": {
+        "precision": 0.9042106396531662,
+        "recall": 0.8470038249043774,
+        "f1-score": 0.8565502955381801,
+        "support": 40001.0
+      }
+    }
+  },
+  "feature_importances": [
+    [
+      "hossz",
+      0.33330470731576844
+    ],
+    [
+      "karakterosztalyok",
+      0.11707138360210903
+    ],
+    [
+      "shannon_entropia",
+      0.10363751104680807
+    ],
+    [
+      "nagybetuk",
+      0.08880149632960202
+    ],
+    [
+      "egyedi_karakterek",
+      0.0882257721050173
+    ],
+    [
+      "nagybetu_arany",
+      0.0735411701680611
+    ],
+    [
+      "kisbetuk",
+      0.04248802322797896
+    ],
+    [
+      "szamjegyek",
+      0.034659914316212175
+    ],
+    [
+      "kisbetu_arany",
+      0.03388349725802479
+    ],
+    [
+      "szamjegy_arany",
+      0.028409589122008534
+    ],
+    [
+      "egyedi_arany",
+      0.022079149154171432
+    ],
+    [
+      "nagybetuvel_kezd",
+      0.013443527572775177
+    ],
+    [
+      "szammal_vegzodik",
+      0.006017167508027995
+    ],
+    [
+      "specialis_arany",
+      0.0056320800556247455
+    ],
+    [
+      "specialis",
+      0.004279718256062381
+    ],
+    [
+      "maganhangzo_arany",
+      0.0017537484969542222
+    ],
+    [
+      "leghosszabb_ismetles",
+      0.001270268199793815
+    ],
+    [
+      "sorozatok",
+      0.0007046482486505674
+    ],
+    [
+      "evszamot_tartalmaz",
+      0.00045894562752973487
+    ],
+    [
+      "csak_betu",
+      0.00013806966290684554
+    ],
+    [
+      "billentyuzetmintak",
+      9.292114184369785e-05
+    ],
+    [
+      "nem_ascii",
+      8.65062049604055e-05
+    ],
+    [
+      "csak_szam",
+      2.0185379108897548e-05
+    ]
+  ]
+}
