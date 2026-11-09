@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# Virtuális környezet
+.venv/
+venv/
+env/
+
+# Adat: a Kaggle-adathalmaz kiszivárgott valódi jelszavakat tartalmaz, ne kerüljön fel
+data/*.csv
+data/*.zip
+
+# Szerkesztők, operációs rendszer
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*.docx
+
+# A betanított modell (models/) és az eredmények (reports/) szándékosan
+# NEM szerepelnek itt: a követelmény szerint a repóban kell lenniük.
