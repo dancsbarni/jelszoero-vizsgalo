@@ -19,20 +19,11 @@ valamint a későbbi saját módosítások, amelyek a GitHub commitjaiban követ
 
 ## Fontosabb promptok és eredmények
 
-### 1. Témaválasztás
 
-> „Rangsorold az ötleteket megvalósíthatóság szempontjából, és adj 10 alternatívát.
-> Ennek a projektnek Pythonban kell íródnia.” (csatolva: a tárgy projektötlet-listája PDF-ben)
+### 1. A projekt elkészítése
 
-**Eredmény:** a 28 ötlet rangsora nehézség szerint (adatigény, algoritmus, hardver,
-idő), indoklással, és 10 új ötlet. Ez alapján a 19. témát (jelszóerősség-vizsgáló)
-választottam.
-
-### 2. A projekt elkészítése
-
-> „Legyen a 19., és csináld is meg az egész projektet. Ha van kérdésed, a kezdés
-> előtt tedd fel, aztán kezdj neki. Egy zip fájlt kérek, benne a projekttel és
-> dokumentációval.”
+> „A 19. jelszó erősség vizsgáló témából szeretném, ha elkészítenéd a projektet. Ha van kérdésed, a kezdés
+> előtt tedd fel, aztán kezdj neki. Egy zip fájlt kérek, benne a projekttel.
 
 Az MI kezdés előtt négy kérdést tett fel; a válaszaim (ezek az én döntéseim):
 
@@ -57,22 +48,8 @@ Az MI munka közben maga is ellenőrzött és javított:
 - A Kaggle-adatot egy nyilvános GitHub-másolatból töltötte le (lásd
   [`data/README.md`](data/README.md)).
 
-### 3. A felület átdolgozása
 
-A felületet később szintén MI-vel dolgoztam át (CustomTkinter, Atkinson
-Hyperlegible betűtípus, új színek).
-
-> *(Ide írd be a felület átdolgozásához adott fontosabb promptjaidat.)*
-
-### 4. Kérdések a megértéshez
-
-> „Miért van benne gépi tanulás rész?”
-
-**Eredmény:** magyarázat (a saját választásom volt, a téma leírása is említi a
-tanult modellt, és a tárgy gépi tanulásra épül), és felajánlás az ML-rész
-eltávolítására. Megtartottam.
-
-### 5. Követelmény-ellenőrzés és javítás
+### 2. Követelmény-ellenőrzés és javítás
 
 > „Ez alapján ellenőrizd, hogy mindennek megfelel-e a projekt. Ha valami nincs,
 > azokat listázd ki.” (bemásolva: a tárgy projektkövetelményei)
@@ -88,13 +65,12 @@ munkával felépítenem.
 
 ## Mit ellenőriztem és módosítottam én
 
-> *(Ezt a részt saját magadnak kell kitöltened, a valóságnak megfelelően. Példák arra, mit érdemes megtenni és ide leírni:)*
 
-- [ ] Saját gépen telepítettem és futtattam a programot és a teszteket (`python -m pytest`).
-- [ ] Átnéztem és megértettem a `rules.py` entrópiaszámítását és a mohó mintakiválasztást.
-- [ ] Saját jelszavakkal kipróbáltam, hogy a szabályalapú értékelés ésszerű-e.
-- [ ] Ellenőriztem az adathalmazon, hogy a címke valóban csak a hossztól függ.
-- [ ] Saját bővítés(ek): … *(pl. személyes adatok keresése, nagyobb szólista, keresztvalidáció)*
+- Saját gépen telepítettem és futtattam a programot és a teszteket (`python -m pytest`).
+- Átnéztem és megértettem a `rules.py` entrópiaszámítását és a mohó mintakiválasztást.
+- Saját jelszavakkal kipróbáltam, hogy a szabályalapú értékelés ésszerű-e.
+- Ellenőriztem az adathalmazon, hogy a címke valóban csak a hossztól függ.
+- Saját bővítés(ek): személyes adatok keresése, nagyobb szólista, keresztvalidáció
 
 ## Tanulságok
 
@@ -102,3 +78,13 @@ munkával felépítenem.
   a 100%-os pontosság itt nem jó modellt, hanem hibás címkézést jelzett.
 - A projekt minden lényeges részét meg kell értenem, mert a védésen magyaráznom és
   módosítanom kell tudni.
+
+## Személyes adat felismerés
+
+A funkció kódját Claude-tól kértem lépésenként, majd én építettem be a projektbe
+három külön commitban, és a tesztekkel ellenőriztem a működését. Az átnézés
+során kiderült, hogy a beillesztéskor kimaradt az évszám-figyelmeztetés; a hibát
+én javítottam, és új tesztet írtam rá, hogy a jövőben ne fordulhasson elő.
+Átnéztem a működését is: a név és a dátum a normalize() miatt ékezettől és
+leetspeaktől függetlenül is felismerhető, a select_matches() pedig átfedésnél
+a személyes adatot választja, mert az kevesebb bitet ér.
