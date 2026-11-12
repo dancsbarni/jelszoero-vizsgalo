@@ -48,7 +48,7 @@ def main() -> int:
         print("A beépített, generált tartalék adattal tanítok.")
         df = generate_fallback_dataset(seed=args.seed)
 
-        summary = train_and_compare(df, test_size=args.test_size, seed=args.seed, progress=print,
+    summary = train_and_compare(df, test_size=args.test_size, seed=args.seed, progress=print,
                                 cv_folds=args.cv)
 
     print("\nÖsszefoglaló (teszthalmaz):")
