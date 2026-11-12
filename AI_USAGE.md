@@ -64,8 +64,6 @@ készített visszadátumozott commitokat; a commit-történetet nekem kell való
 munkával felépítenem.
 
 ## Mit ellenőriztem és módosítottam én
-
-
 - Saját gépen telepítettem és futtattam a programot és a teszteket (`python -m pytest`).
 - Átnéztem és megértettem a `rules.py` entrópiaszámítását és a mohó mintakiválasztást.
 - Saját jelszavakkal kipróbáltam, hogy a szabályalapú értékelés ésszerű-e.

@@ -5,10 +5,13 @@ módszerrel** értékeli, és az eredményeket összeveti:
 
 1. **Szabályalapú értékelés** – effektív entrópia becslése mintafelismeréssel
    (szótári szavak, leetspeak, sorozatok, billentyűzetminták, ismétlődések,
-   évszámok/dátumok, gyakori jelszavak) és becsült feltörési idő.
+   évszámok/dátumok, gyakori jelszavak, a felhasználó személyes adatai) és becsült
+   feltörési idő. A gyakori jelszavak listája több mint 10 000 elemű (SecLists),
+   mellette saját magyar szótár; mindkettő szövegfájlból töltődik be.
 2. **Gépi tanulás** – a Kaggle *Password Strength Classifier* adathalmazon
    tanított osztályozók (Random Forest, döntési fa, logisztikus regresszió,
-   TF-IDF karakter n-gram modell), egységes kiértékeléssel.
+   TF-IDF karakter n-gram modell), egységes kiértékeléssel és 5-szörös
+   keresztvalidációval.
 
 A részletes leírás: `docs/Dokumentacio.docx`.
 
@@ -72,6 +75,10 @@ tanítsd újra a fenti paranccsal.
 python -m pytest
 ```
 
+29 egységteszt: szabályalapú értékelő és mintafelismerők, személyes adatok,
+szólista-betöltés, CSV-beolvasó, generátor, teljes tanítási folyamat és
+keresztvalidáció.
+
 ## Projektstruktúra
 
 ```
@@ -82,7 +89,8 @@ jelszoero_projekt/
 ├── requirements.txt
 ├── src/jelszoero/
 │   ├── rules.py            szabályalapú értékelés (entrópia + minták)
-│   ├── wordlists.py        gyakori jelszavak, szótár, billentyűzetsorok
+│   ├── wordlists.py        szólisták (beépített + fájlból betöltött), billentyűzetsorok
+│   ├── assets/wordlists/   common_passwords.txt (SecLists), dictionary.txt (saját)
 │   ├── features.py         jellemzőkinyerés az ML-hez
 │   ├── data.py             Kaggle CSV beolvasás, tartalék adatgenerálás
 │   ├── ml_model.py         tanítás, kiértékelés, mentés, előrejelzés
@@ -99,16 +107,19 @@ jelszoero_projekt/
 
 ## Eredmények röviden
 
-200 000 jelszavas rétegzett minta, 80/20 tanító/teszt felosztás:
+200 000 jelszavas rétegzett minta, 80/20 tanító/teszt felosztás; a CV F1 az
+5-szörös rétegzett keresztvalidáció átlaga ± szórása a tanítóhalmazon:
 
-| Modell | Pontosság | Makro F1 |
-|---|---:|---:|
-| Random Forest (jellemzők) | 1,0000 | 1,0000 |
-| Döntési fa (jellemzők) | 1,0000 | 1,0000 |
-| Logisztikus regresszió (jellemzők) | 0,9998 | 0,9996 |
-| Logisztikus regresszió (TF-IDF n-gram) | 0,8868 | 0,7925 |
-| Alapmodell: döntési fa (csak hossz) | 1,0000 | 1,0000 |
-| Szabályalapú (entrópia + minták) | 0,8470 | 0,8122 |
+| Modell | Pontosság | Makro F1 | CV F1 |
+|---|---:|---:|---:|
+| Random Forest (jellemzők) | 1,0000 | 1,0000 | 1,0000 ± 0,0000 |
+| Döntési fa (jellemzők) | 1,0000 | 1,0000 | 1,0000 ± 0,0000 |
+| Logisztikus regresszió (jellemzők) | 0,9998 | 0,9996 | 0,9999 ± 0,0001 |
+| Logisztikus regresszió (TF-IDF n-gram) | 0,8857 | 0,7899 | 0,7721 ± 0,0040 |
+| Alapmodell: döntési fa (csak hossz) | 1,0000 | 1,0000 | 1,0000 ± 0,0000 |
+| Szabályalapú (entrópia + minták) | 0,7630 | 0,7477 | – |
+
+![Modellek összehasonlítása](reports/model_comparison.png)
 
 **Fontos megállapítás:** a felhasznált adatmásolatban a címke kizárólag a jelszó
 hosszától függ (1–7 karakter: gyenge, 8–13: közepes, 14+: erős). Ezt a csak a
@@ -116,7 +127,9 @@ hosszt látó alapmodell 100%-os eredménye bizonyítja. Az ML-modellek tehát e
 címkézési szabályt tanulják meg, nem a valódi feltörhetőséget. A szabályalapú
 módszer „hibái” nagyrészt olyan jelszavak, amelyeket az adathalmaz közepesnek
 címkéz, de kitalálható mintát (sorozat, évszám, szótári szó) tartalmaznak.
-Részletek a dokumentációban.
+A nagyobb szólistával a szabályalapú F1 0,81-ről 0,75-re csökkent: az értékelő
+több valóban gyenge jelszót ismer fel, ami a hossz alapú címkéktől még jobban
+eltér. Részletek a dokumentációban.
 
 ## MI-eszközök használata
 
