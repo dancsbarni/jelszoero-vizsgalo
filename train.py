@@ -32,6 +32,8 @@ def main() -> int:
                         help="legfeljebb ennyi sort használ (rétegzett minta); 0 = mind")
     parser.add_argument("--test-size", type=float, default=0.2)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--cv", type=int, default=5,
+                        help="keresztvalidáció foldjainak száma; 0 = kikapcsolva")
     parser.add_argument("--fallback", action="store_true",
                         help="a beépített generált adattal tanít")
     args = parser.parse_args()
@@ -46,12 +48,15 @@ def main() -> int:
         print("A beépített, generált tartalék adattal tanítok.")
         df = generate_fallback_dataset(seed=args.seed)
 
-    summary = train_and_compare(df, test_size=args.test_size, seed=args.seed, progress=print)
+        summary = train_and_compare(df, test_size=args.test_size, seed=args.seed, progress=print,
+                                cv_folds=args.cv)
 
     print("\nÖsszefoglaló (teszthalmaz):")
-    print(f"{'Modell':45} {'Pontosság':>10} {'Makro F1':>10}")
+    print(f"{'Modell':45} {'Pontosság':>10} {'Makro F1':>10} {'CV F1 (átlag ± szórás)':>24}")
     for m in summary["models"] + [summary["rule_based"]]:
-        print(f"{m['name']:45} {m['accuracy']:10.4f} {m['f1']:10.4f}")
+        cv = (f"{m['cv_f1_mean']:.4f} ± {m['cv_f1_std']:.4f}"
+              if m.get("cv_f1_mean") is not None else "–")
+        print(f"{m['name']:45} {m['accuracy']:10.4f} {m['f1']:10.4f} {cv:>24}")
     print(f"\nLegjobb modell: {summary['best_model']}")
     return 0
 
