@@ -56,3 +56,12 @@ def test_training_pipeline_end_to_end(tmp_path):
     label, proba = predict(bundle, "123456")
     assert label in (0, 1, 2) and abs(sum(proba) - 1) < 1e-6
     assert predict(bundle, "123456")[0] == 0
+
+def test_cross_validation(tmp_path):
+    df = generate_fallback_dataset(n=900, seed=2)
+    summary = train_and_compare(df, models_dir=tmp_path / "m", reports_dir=tmp_path / "r",
+                                cv_folds=3)
+    for m in summary["models"]:
+        assert 0 <= m["cv_f1_mean"] <= 1
+        assert m["cv_f1_std"] >= 0
+    assert summary["rule_based"]["cv_f1_mean"] is None
