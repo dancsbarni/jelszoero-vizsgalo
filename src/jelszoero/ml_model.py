@@ -28,6 +28,7 @@ from typing import Callable
 
 import joblib
 import numpy as np
+from sklearn.base import clone
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -39,7 +40,7 @@ from sklearn.metrics import (
     precision_score,
     recall_score,
 )
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedKFold, cross_val_score, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, StandardScaler
 from sklearn.tree import DecisionTreeClassifier
@@ -110,6 +111,8 @@ class ModelResult:
     predict_ms_per_1000: float
     confusion: list[list[int]]
     report: dict = field(default_factory=dict)
+    cv_f1_mean: float | None = None  
+    cv_f1_std: float | None = None    
 
     def as_dict(self) -> dict:
         return self.__dict__.copy()
@@ -135,7 +138,8 @@ def _score(name: str, y_true, y_pred, train_s: float, pred_s: float, n: int) -> 
 def train_and_compare(df, test_size: float = 0.2, seed: int = 42,
                       progress: ProgressCallback | None = None,
                       models_dir: Path = MODELS_DIR,
-                      reports_dir: Path = REPORTS_DIR) -> dict:
+                      reports_dir: Path = REPORTS_DIR,
+                      cv_folds: int = 0) -> dict:
     """Az összes modell tanítása és kiértékelése, a legjobb mentése.
 
     Visszatérés: összefoglaló szótár (ezt menti ``reports/metrics.json``-ba is).
@@ -161,6 +165,13 @@ def train_and_compare(df, test_size: float = 0.2, seed: int = 42,
         y_pred = pipe.predict(X_test)
         pred_s = time.perf_counter() - t0
         res = _score(name, y_test, y_pred, train_s, pred_s, len(X_test))
+        if cv_folds >= 2:
+                log(f"  {cv_folds}-szoros keresztvalidáció …")
+                folds = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=seed)
+                scores = cross_val_score(clone(pipe), X_train, y_train, cv=folds, scoring="f1_macro")
+                res.cv_f1_mean = float(scores.mean())
+                res.cv_f1_std = float(scores.std())
+                log(f"  CV F1 = {res.cv_f1_mean:.4f} ± {res.cv_f1_std:.4f}")
         results.append(res)
         fitted[name] = pipe
         log(f"  pontosság={res.accuracy:.4f}  F1={res.f1:.4f}  ({train_s:.1f} s)")
