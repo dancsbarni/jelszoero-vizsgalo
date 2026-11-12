@@ -13,7 +13,6 @@ módszerrel** értékeli, és az eredményeket összeveti:
    TF-IDF karakter n-gram modell), egységes kiértékeléssel és 5-szörös
    keresztvalidációval.
 
-A részletes leírás: `docs/Dokumentacio.docx`.
 
 A felület CustomTkinterrel készült, világos témával; a betűtípus a jól olvasható Atkinson Hyperlegible, amelyben az összetéveszthető jelek (l, 1, I, 0, O) jól megkülönböztethetők.
 
