@@ -1,5 +1,5 @@
 {
-  "trained_at": "2026-11-17T13:00:49",
+  "trained_at": "2026-11-17T13:23:05",
   "data_source": "beépített tartalék (generált) adat",
   "n_samples": 29310,
   "n_train": 23448,
@@ -9,16 +9,16 @@
     "Közepes": 9974,
     "Erős": 10000
   },
-  "best_model": "Random Forest (jellemzők)",
+  "best_model": "Random Forest",
   "models": [
     {
-      "name": "Random Forest (jellemzők)",
+      "name": "Random Forest",
       "accuracy": 0.989252814738997,
       "precision": 0.9890506446240207,
       "recall": 0.9892220882056955,
       "f1": 0.9891227940807837,
-      "train_seconds": 5.95,
-      "predict_ms_per_1000": 215.95,
+      "train_seconds": 7.35,
+      "predict_ms_per_1000": 297.78,
       "confusion": [
         [
           1845,
@@ -73,13 +73,13 @@
       "cv_f1_std": null
     },
     {
-      "name": "Döntési fa (jellemzők)",
+      "name": "Döntési fa",
       "accuracy": 0.9856704196519959,
       "precision": 0.9854095503659811,
       "recall": 0.9856789507691742,
       "f1": 0.9854978830996267,
-      "train_seconds": 6.01,
-      "predict_ms_per_1000": 241.96,
+      "train_seconds": 6.55,
+      "predict_ms_per_1000": 275.93,
       "confusion": [
         [
           1842,
@@ -134,13 +134,13 @@
       "cv_f1_std": null
     },
     {
-      "name": "Logisztikus regresszió (jellemzők)",
+      "name": "Logisztikus regresszió",
       "accuracy": 0.9776526782668031,
       "precision": 0.977313049060261,
       "recall": 0.9774594196167082,
       "f1": 0.9773757653249792,
-      "train_seconds": 5.95,
-      "predict_ms_per_1000": 270.42,
+      "train_seconds": 6.54,
+      "predict_ms_per_1000": 241.56,
       "confusion": [
         [
           1810,
@@ -195,13 +195,13 @@
       "cv_f1_std": null
     },
     {
-      "name": "Logisztikus regresszió (TF-IDF n-gram)",
+      "name": "TF-IDF + logisztikus regresszió",
       "accuracy": 0.90992835209826,
       "precision": 0.9126349916575928,
       "recall": 0.9080596834435669,
       "f1": 0.9089269934088816,
-      "train_seconds": 3.57,
-      "predict_ms_per_1000": 42.7,
+      "train_seconds": 3.64,
+      "predict_ms_per_1000": 34.24,
       "confusion": [
         [
           1541,
@@ -256,13 +256,13 @@
       "cv_f1_std": null
     },
     {
-      "name": "Alapmodell: döntési fa (csak hossz)",
+      "name": "Alapmodell(csak hossz)",
       "accuracy": 0.8381098601160014,
       "precision": 0.8558990122331555,
       "recall": 0.8376108992352332,
       "f1": 0.8372740188973068,
-      "train_seconds": 0.05,
-      "predict_ms_per_1000": 1.43,
+      "train_seconds": 0.03,
+      "predict_ms_per_1000": 0.97,
       "confusion": [
         [
           1533,
@@ -318,13 +318,13 @@
     }
   ],
   "rule_based": {
-    "name": "Szabályalapú (entrópia + minták)",
+    "name": "Szabályalapú",
     "accuracy": 0.827021494370522,
     "precision": 0.877018081889949,
     "recall": 0.8305764411027569,
     "f1": 0.8134976449095608,
     "train_seconds": 0.0,
-    "predict_ms_per_1000": 470.0,
+    "predict_ms_per_1000": 346.6,
     "confusion": [
       [
         1867,
