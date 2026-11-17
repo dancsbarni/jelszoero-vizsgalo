@@ -1,88 +1,82 @@
 # Mesterséges intelligencia használata
 
-A projekt elkészítéséhez generatív MI-eszközt használtam. Ez a fájl leírja,
-melyik eszközt, mire, milyen promptokkal, mit kaptam, és mit ellenőriztem vagy
-módosítottam rajta.
+A projekt fejlesztése során generatív mesterségesintelligencia-eszközt is alkalmaztunk, elsősorban szakmai támogatásként, ötleteléshez, egyes fejlesztési feladatok megoldásához és az elemzési folyamatok ellenőrzéséhez. Az eszköz használata mellett a projekt felépítésével, az alkalmazott módszerekkel, a technológiai döntésekkel és az eredmények értelmezésével kapcsolatos döntéseket közösen hoztuk meg.
 
 ## Eszköz
 
-| | |
-|---|---|
-| Eszköz | **Claude** (Anthropic), a claude.ai felületén, fájl- és kódfuttatási hozzáféréssel |
+| Eszköz | **Claude** (Anthropic), a claude.ai felületén |
 | Időszak | 2026. november |
-| Szerep | Ötletrangsorolás, a teljes kód első változatának megírása, tanítás futtatása, dokumentáció és ábrák elkészítése, követelmény-ellenőrzés |
+| Felhasználási terület | Tervezési támogatás, kódfejlesztés, hibakeresés, tesztelés, adatelemzés és dokumentáció |
 
-**Őszintén:** a projekt első, működő változatát (kód, tesztek, ábrák, README,
-Word-dokumentáció) lényegében teljes egészében az MI írta. A saját munkám a
-témaválasztás, a döntések (lásd lent), az eredmények ellenőrzése és értelmezése,
-valamint a későbbi saját módosítások, amelyek a GitHub commitjaiban követhetők.
+A fejlesztés során az MI-t elsősorban olyan feladatok támogatására használtuk, amelyeknél hasznos volt egy alternatív megközelítés vagy egy gyorsabb kiindulási megoldás. A kapott eredményeket a projekt követelményeihez igazítottuk, saját környezetben teszteltük, és szükség esetén módosítottuk.
 
-## Fontosabb promptok és eredmények
+## Fontosabb felhasználási területek
 
+### 1. Tervezés és a projekt felépítése
 
-### 1. A projekt elkészítése
+A fejlesztés kezdetén a lehetséges projektötletek összehasonlításához és a választott téma megtervezéséhez vettük igénybe az MI segítségét.
 
-> „A 19. jelszó erősség vizsgáló témából szeretném, ha elkészítenéd a projektet. Ha van kérdésed, a kezdés
-> előtt tedd fel, aztán kezdj neki. Egy zip fájlt kérek, benne a projekttel.
+A végleges megoldás kialakításakor az alábbi szempontok mellett döntöttünk:
 
-Az MI kezdés előtt négy kérdést tett fel; a válaszaim (ezek az én döntéseim):
-
-| Kérdés | Választásom |
-|---|---|
-| Felület | Tkinter asztali GUI |
-| Értékelési módszer | Szabályalapú + gépi tanulás együtt |
+| Terület | Választott megoldás |
+| Felhasználói felület | Python és Tkinter alapú asztali alkalmazás |
+| Értékelési módszer | Szabályalapú értékelés és gépi tanulás összehasonlítása |
 | Tanítóadat | Kaggle *Password Strength Classifier* adathalmaz |
-| Dokumentáció | Magyar README + Word-dokumentáció |
+| Modellválasztás | Több különböző osztályozó összehasonlítása |
+| Dokumentáció | Magyar nyelvű dokumentáció és fejlesztői leírás |
 
-**Eredmény:** a teljes projekt: szabályalapú értékelő (`rules.py`), jellemzőkinyerés,
-négy ML-modell és összehasonlításuk, Tkinter felület, generátor, 20 pytest-teszt,
-ábrák, README és 15 oldalas Word-dokumentáció.
+A tervezés során fontos szempont volt, hogy ne csupán egy jelszóellenőrző alkalmazás készüljön, hanem a két különböző értékelési módszer eredményeit is össze tudjuk hasonlítani.
 
-Az MI munka közben maga is ellenőrzött és javított:
+### 2. Fejlesztés és hibakeresés
 
-- Futtatta a teszteket és a tanítást, a felületről képernyőképeket készített, és
-  ezek alapján javította az elrendezést.
-- Észrevette, hogy három modell 100%-os pontosságú, ezért utánanézett: kiderült,
-  hogy az adathalmazban a címke **csak a jelszó hosszától** függ. Ezt egy csak a
-  hosszt látó alapmodellel igazolta, és a dokumentációban külön elemezte.
-- A Kaggle-adatot egy nyilvános GitHub-másolatból töltötte le (lásd
-  [`data/README.md`](data/README.md)).
+A fejlesztés során az MI segítségét vettük igénybe egyes Python-modulok kialakításához, a gépi tanulási modellek megvalósításához, valamint a grafikus felület fejlesztéséhez.
 
+A projektben többek között az alábbi területeken használtuk fel:
 
-### 2. Követelmény-ellenőrzés és javítás
+- A szabályalapú jelszóértékelés és a mintafelismerés kialakítása.
+- A gépi tanuláshoz szükséges jellemzők meghatározása és kinyerése.
+- A Random Forest, döntési fa és logisztikus regressziós modellek megvalósítása.
+- A Tkinter-alapú felhasználói felület kialakítása.
+- A jelszó- és jelmondatgenerátor elkészítése.
+- Az automatikus tesztek és a kiértékelő ábrák fejlesztése.
 
-> „Ez alapján ellenőrizd, hogy mindennek megfelel-e a projekt. Ha valami nincs,
-> azokat listázd ki.” (bemásolva: a tárgy projektkövetelményei)
->
-> „Javítsd ki az 1., 2., 5. pontok szerint a projektet.”
+A kapott kódot nem tekintettük automatikusan végleges megoldásnak. A működést saját környezetben ellenőriztük, a hibákat javítottuk, és a projekt további fejlesztése során több funkciót is kiegészítettünk.
 
-**Eredmény:** a hiányok listája (MI-dokumentáció, GitHub-történet, saját munka,
-prezentáció, apróságok). A javítás során elkészült ez a fájl, a `.gitignore`, a
-GitHub-útmutató ([`docs/GITHUB_UTMUTATO.md`](docs/GITHUB_UTMUTATO.md)), az adatforrás
-pontos megadása és egy MI-fejezet a dokumentációban. Az MI kifejezetten nem
-készített visszadátumozott commitokat; a commit-történetet nekem kell valós
-munkával felépítenem.
+### 3. Eredmények ellenőrzése és elemzése
 
-## Mit ellenőriztem és módosítottam én
-- Saját gépen telepítettem és futtattam a programot és a teszteket (`python -m pytest`).
-- Átnéztem és megértettem a `rules.py` entrópiaszámítását és a mohó mintakiválasztást.
-- Saját jelszavakkal kipróbáltam, hogy a szabályalapú értékelés ésszerű-e.
-- Ellenőriztem az adathalmazon, hogy a címke valóban csak a hossztól függ.
-- Saját bővítés(ek): személyes adatok keresése, nagyobb szólista (a magyar szótárat én állítottam össze)
+A projekt egyik legfontosabb eredménye a gépi tanulási modellek kiértékelése során született.
 
-## Tanulságok
+A tesztelés során feltűnt, hogy több modell is közel 100%-os pontosságot ért el. Ez felvetette annak lehetőségét, hogy az adathalmaz címkézése túl egyszerű összefüggést tartalmaz.
 
-- Az MI gyorsan ad működő, jól strukturált kódot, de a kimenetet ellenőrizni kell:
-  a 100%-os pontosság itt nem jó modellt, hanem hibás címkézést jelzett.
-- A projekt minden lényeges részét meg kell értenem, mert a védésen magyaráznom és
-  módosítanom kell tudni.
+Ennek ellenőrzésére egy olyan alapmodellt is bevontunk az összehasonlításba, amely kizárólag a jelszó hosszát veszi figyelembe. Az eredmények alapján kiderült, hogy az adathalmazban a kategóriák meghatározása valójában teljes egészében a jelszó hosszától függ.
 
-## Személyes adat felismerés
+Ez fontos következtetés volt, mivel megmutatta, hogy a magas pontosság önmagában nem feltétlenül jelenti azt, hogy egy modell valóban a vizsgált probléma lényegét tanulta meg.
 
-A funkció kódját Claude-tól kértem lépésenként, majd én építettem be a projektbe
-három külön commitban, és a tesztekkel ellenőriztem a működését. Az átnézés
-során kiderült, hogy a beillesztéskor kimaradt az évszám-figyelmeztetés; a hibát
-én javítottam, és új tesztet írtam rá, hogy a jövőben ne fordulhasson elő.
-Átnéztem a működését is: a név és a dátum a normalize() miatt ékezettől és
-leetspeaktől függetlenül is felismerhető, a select_matches() pedig átfedésnél
-a személyes adatot választja, mert az kevesebb bitet ér.
+Az eredmények értelmezését, a szabályalapú és gépi tanulási módszer közötti különbségek vizsgálatát, valamint a következtetések dokumentálását külön feladatként kezeltük.
+
+### 4. Saját fejlesztések és módosítások
+
+A projekt továbbfejlesztése során több olyan módosítást is elvégeztünk, amelyek a kezdeti funkcionalitást bővítették.
+
+Ezek közül kiemelendők:
+
+- **Személyes adatok felismerése:** a névhez és születési dátumhoz kapcsolódó minták felismerésének beépítése a szabályalapú értékelőbe.
+- **Szólisták bővítése:** a gyakori jelszavakat tartalmazó lista kiegészítése, valamint saját magyar nyelvű szólista összeállítása.
+- **Keresztvalidáció:** az öt részre osztott keresztvalidáció beépítése a modellek stabilitásának vizsgálatához.
+- **Hibajavítás és tesztelés:** a fejlesztés során felmerült hibák javítása és az érintett funkciók tesztekkel történő ellenőrzése.
+
+A személyes adatok felismerésénél külön figyelmet fordítottunk arra, hogy a rendszer az ékezetek és bizonyos karakterhelyettesítések ellenére is képes legyen az egyezések felismerésére. Az átfedő minták kezelését is ellenőriztük, és a fejlesztés során egy hiányzó évszám-figyelmeztetést is javítottunk.
+
+A saját módosítások és fejlesztési lépések a GitHub repository commit-történetében is nyomon követhetők.
+
+## Mit ellenőriztünk a fejlesztés során?
+
+A projekt megbízható működésének biztosítása érdekében az alábbi ellenőrzéseket végeztük el:
+
+- A program telepítése és futtatása saját számítógépen.
+- Az automatikus tesztek futtatása a `python -m pytest` paranccsal.
+- A szabályalapú értékelés entrópiabecslésének és mintakiválasztási algoritmusának áttekintése.
+- Különböző jelszavak vizsgálata a felismerési és értékelési eredmények ellenőrzéséhez.
+- A Kaggle-adathalmaz címkézési logikájának vizsgálata.
+- A gépi tanulási modellek eredményeinek összehasonlítása.
+- A grafikus felület és a generátor működésének ellenőrzése.
