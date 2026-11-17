@@ -1,22 +1,4 @@
-"""Grafikus felület (CustomTkinter, világos téma).
 
-Három oldal, a fejléc szöveges navigációjával:
-    Vizsgálat   – a beírt jelszó élő értékelése (szabályalapú + gépi tanulás)
-    Generátor   – erős jelszó vagy jelmondat generálása
-    Modellek    – modellek tanítása CSV-ből, mérőszámok és ábrák
-
-Tervezési döntések:
-    * Betűtípus: Atkinson Hyperlegible – a Braille Institute olvashatósági
-      betűtípusa, amelyben az összetéveszthető jelek (l, 1, I, 0, O) jól
-      megkülönböztethetők. Jelszavaknál ez nem díszítés, hanem funkció.
-      A jelszó maga az Atkinson Hyperlegible Mono változattal jelenik meg.
-    * Egyetlen hangsúlyos elem: a jelszó „bontása” – a program a
-      karakterek alatt aláhúzással mutatja, melyik rész kitalálható minta.
-    * Kártyák és díszítő keretek helyett térköz és vékony elválasztó vonalak;
-      színt csak az erősség jelzése kap.
-
-A jelszavakat a program sehova nem menti és nem küldi tovább.
-"""
 
 from __future__ import annotations
 
@@ -42,9 +24,6 @@ from .ml_model import (
 )
 from .rules import RuleResult, evaluate
 
-# ---------------------------------------------------------------------------
-# Színek
-# ---------------------------------------------------------------------------
 BG = "#F3F5F4"          # ablakháttér: hűvös, enyhén zöldes szürke
 FIELD = "#FFFFFF"       # beviteli mezők
 INK = "#1E2522"         # fő szövegszín és elsődleges gombok
@@ -56,7 +35,7 @@ EDGE = "#C3CBC7"        # mezők kerete
 EDGE_FOCUS = "#1E2522"
 TRACK = "#DFE4E1"       # sávok háttere
 
-# négy megjelenítési fokozat (a 3 osztályos szintből és az entrópiából)
+
 LEVELS = [
     ("Nagyon gyenge", "#A3301F"),
     ("Gyenge", "#C2541C"),
@@ -140,8 +119,7 @@ class Breakdown(tk.Canvas):
         self.delete("all")
         pw, matches, hidden, color = self._data
         if not pw:
-            self.create_text(0, 14, anchor="w", text="Itt jelennek meg a jelszó kitalálható részei.",
-                             font=self.label_font, fill=TEXT_3)
+           
             return
         cw = self.mono.measure("M")
         width = self.winfo_width()
@@ -273,8 +251,6 @@ class App(ctk.CTk):
             lab.bind("<Button-1>", lambda e, k=key: self.show_page(k))
             self.nav_items[key] = (lab, bar)
 
-        self.privacy = self.text(head, "A beírt jelszót a program nem menti és nem küldi el.", "small", TEXT_3)
-        self.privacy.pack(side="right")
         self.rule(self, padx=0, pady=(12, 0))
 
     def show_page(self, key: str) -> None:
@@ -590,13 +566,13 @@ class App(ctk.CTk):
             self.main_meter.configure(progress_color=TRACK)
             self.main_meter.set(0)
             self.level_lab.configure(text="Még nincs mit értékelni", text_color=TEXT_3)
-            self.crack_lab.configure(text="Gépelés közben itt látod, mennyi idő alatt lehetne kitalálni.")
+            self.crack_lab.configure(text="")
 
         warnings = r.warnings
         tips = [s for s in r.suggestions if not s.startswith("Írj be")]
         self._fill(self.warn_box, warnings if pw else [], color,
-                   "Nem talált kitalálható mintát." if pw else "Itt jelennek meg a talált gyengeségek.")
-        self._fill(self.tip_box, tips if pw else [], EDGE, "A javaslatok a beírt jelszóhoz igazodnak.")
+                   "Nem talált kitalálható mintát." if pw else "")
+        self._fill(self.tip_box, tips if pw else [], EDGE, "")
 
         for w in self.check_box.winfo_children():
             w.destroy()
@@ -642,7 +618,7 @@ class App(ctk.CTk):
             except Exception as exc:
                 self.ml_verdict.configure(text=f"Az előrejelzés nem sikerült: {exc}")
         else:
-            self.ml_verdict.configure(text="A modell ítélete itt jelenik meg." if self.model else "")
+            self.ml_verdict.configure(text="" if self.model else "")
             for bar, pct in self.proba:
                 bar.configure(progress_color=TRACK)
                 bar.set(0)
