@@ -53,8 +53,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 MODELS_DIR = PROJECT_ROOT / "models"
 REPORTS_DIR = PROJECT_ROOT / "reports"
 DEFAULT_MODEL_PATH = MODELS_DIR / "best_model.joblib"
-RULE_BASED_NAME = "Szabályalapú (entrópia + minták)"
-BASELINE_NAME = "Alapmodell: döntési fa (csak hossz)"
+RULE_BASED_NAME = "Szabályalapú"
+BASELINE_NAME = "Alapmodell(csak hossz)"
 
 ProgressCallback = Callable[[str], None]
 
@@ -73,21 +73,21 @@ def build_models(seed: int = 42) -> dict[str, Pipeline]:
     """A modellek sorrendje egyben a holtversenyek feloldási sorrendje is."""
     feat = lambda: FunctionTransformer(_features)  # noqa: E731
     return {
-        "Random Forest (jellemzők)": Pipeline([
+        "Random Forest": Pipeline([
             ("jellemzok", feat()),
             ("modell", RandomForestClassifier(
                 n_estimators=150, min_samples_leaf=2, n_jobs=-1, random_state=seed)),
         ]),
-        "Döntési fa (jellemzők)": Pipeline([
+        "Döntési fa": Pipeline([
             ("jellemzok", feat()),
             ("modell", DecisionTreeClassifier(max_depth=8, random_state=seed)),
         ]),
-        "Logisztikus regresszió (jellemzők)": Pipeline([
+        "Logisztikus regresszió": Pipeline([
             ("jellemzok", feat()),
             ("skalazas", StandardScaler()),
             ("modell", LogisticRegression(max_iter=2000)),
         ]),
-        "Logisztikus regresszió (TF-IDF n-gram)": Pipeline([
+        "TF-IDF + logisztikus regresszió": Pipeline([
             ("tfidf", TfidfVectorizer(analyzer="char", ngram_range=(1, 3),
                                       lowercase=False, min_df=2, max_features=60000,
                                       sublinear_tf=True)),
@@ -201,7 +201,7 @@ def train_and_compare(df, test_size: float = 0.2, seed: int = 42,
     joblib.dump(bundle, model_path, compress=3)
     log(f"Modell mentve: {model_path}")
 
-    rf = fitted.get("Random Forest (jellemzők)")
+    rf = fitted.get("Random Forest")
     importances = None
     if rf is not None:
         imp = rf.named_steps["modell"].feature_importances_
