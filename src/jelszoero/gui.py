@@ -314,12 +314,12 @@ class App(ctk.CTk):
         fields = ((self.name_var, "Neved, pl. Kovács Anna"),
         (self.birth_var, "Születési dátum, pl. 1999.04.15"))
         for var, hint in fields:
-        var.trace_add("write", lambda *_: self._schedule_analyze())
-        entry = ctk.CTkEntry(pers, textvariable=var, placeholder_text=hint,
-        width=220, height=30, font=self.f["body"],
-        corner_radius=6, border_width=1, border_color=EDGE,
-        fg_color=FIELD, text_color=INK)
-        entry.pack(side="left", padx=(0, 8))
+            var.trace_add("write", lambda *_: self._schedule_analyze())
+            entry = ctk.CTkEntry(pers, textvariable=var, placeholder_text=hint,
+            width=220, height=30, font=self.f["body"],
+            corner_radius=6, border_width=1, border_color=EDGE,
+            fg_color=FIELD, text_color=INK)
+            entry.pack(side="left", padx=(0, 8))
 
         self.breakdown = Breakdown(p, self.mono_family, self.ui_family)
         self.breakdown.pack(fill="x", pady=(18, 0))
