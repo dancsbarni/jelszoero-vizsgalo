@@ -309,7 +309,7 @@ def personal_from_fields(name: str = "", birth: str = "") -> list[str]:
     for part in name.replace("-", " ").split():
         if len(part) >= 3:
             items.append(part)
-            digits = "".join(c for c in birth if c.isdigit())
+    digits = "".join(c for c in birth if c.isdigit())
     if len(digits) == 8: # ééééhhnn
         items += [digits, digits[:4], digits[4:]]
     elif len(digits) == 4: # csak évszám
