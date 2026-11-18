@@ -121,3 +121,18 @@ def test_load_wordlist_missing_file():
 def test_own_dictionary_word_detected():
     r = evaluate("Balaton2024!")
     assert any(m.kind == "szótári szó" and m.token == "Balaton" for m in r.matches)
+
+def test_personal_from_fields():
+ from jelszoero.rules import personal_from_fields
+ items = personal_from_fields("Kovács Anna", "1999.04.15")
+ assert "Kovács" in items and "Anna" in items
+ assert "19990415" in items and "1999" in items and "0415" in items
+ assert personal_from_fields("", "") == []
+ assert personal_from_fields("Al", "") == [] # túl rövid névrész
+def test_personal_fields_weaken_password():
+ from jelszoero.rules import personal_from_fields
+ pw = "anna0415!Qx"
+ without = evaluate(pw)
+ with_info = evaluate(pw, personal_from_fields("Kovács Anna", "1999.04.15"))
+ assert with_info.entropy_bits < without.entropy_bits
+ assert any(m.kind == "személyes adat" for m in with_info.matches)
