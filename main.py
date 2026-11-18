@@ -16,14 +16,15 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "src"))
 
 
-def cli(password: str | None) -> int:
+def cli(password: str | None, personal: list[str] | None = None) -> int:
+
     from jelszoero import LEVEL_NAMES
     from jelszoero.ml_model import load_model, predict
     from jelszoero.rules import evaluate
 
     if password is None:
         password = getpass.getpass("Jelszó (nem jelenik meg): ")
-    r = evaluate(password)
+    r = evaluate(password, personal)
     print(f"Szabályalapú szint : {r.level_name} ({r.score}/100)")
     print(f"Effektív entrópia  : {r.entropy_bits} bit (naiv: {r.naive_entropy_bits} bit)")
     print(f"Feltörési idő      : online {r.crack_times_text['online']}, offline {r.crack_times_text['offline']}")
@@ -43,6 +44,9 @@ def cli(password: str | None) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Jelszóerősség-vizsgáló")
+    parser.add_argument("--nev", default="", help="a felhasználó neve (személyes adat keresése)")
+    parser.add_argument("--szuletes", default="", help="születési dátum, pl. 1999.04.15")
+
     parser.add_argument("--cli", nargs="?", const="", default=None, metavar="JELSZÓ",
                         help="parancssori mód (jelszó nélkül rejtett bekérés)")
     args = parser.parse_args()
