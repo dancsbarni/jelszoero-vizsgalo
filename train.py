@@ -1,16 +1,3 @@
-"""Modellek tanítása és összehasonlítása parancssorból.
-
-Használat:
-    python train.py                         # data/data.csv, ha létezik; különben tartalék adat
-    python train.py --data utvonal/data.csv --max-rows 200000
-    python train.py --fallback              # mindenképp a generált tartalék adattal
-
-Kimenet:
-    models/best_model.joblib   – a legjobb (makro F1) modell
-    reports/metrics.json       – minden mérőszám
-    reports/*.png              – összehasonlító ábrák
-"""
-
 from __future__ import annotations
 
 import argparse

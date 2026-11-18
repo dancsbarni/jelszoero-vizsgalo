@@ -1,72 +1,72 @@
 {
-  "trained_at": "2026-11-17T13:23:05",
-  "data_source": "beépített tartalék (generált) adat",
-  "n_samples": 29310,
-  "n_train": 23448,
-  "n_test": 5862,
+  "trained_at": "2026-11-18T10:55:50",
+  "data_source": "C:\\Users\\DancshaziBarnabas\\Documents\\GitHub\\jelszoero-vizsgalo\\data\\data.csv",
+  "n_samples": 200001,
+  "n_train": 160000,
+  "n_test": 40001,
   "class_distribution": {
-    "Gyenge": 9336,
-    "Közepes": 9974,
-    "Erős": 10000
+    "Gyenge": 26782,
+    "Közepes": 148326,
+    "Erős": 24893
   },
   "best_model": "Random Forest",
   "models": [
     {
       "name": "Random Forest",
-      "accuracy": 0.989252814738997,
-      "precision": 0.9890506446240207,
-      "recall": 0.9892220882056955,
-      "f1": 0.9891227940807837,
-      "train_seconds": 7.35,
-      "predict_ms_per_1000": 297.78,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "train_seconds": 26.57,
+      "predict_ms_per_1000": 107.51,
       "confusion": [
         [
-          1845,
-          22,
-          0
-        ],
-        [
-          40,
-          1955,
+          5356,
+          0,
           0
         ],
         [
           0,
-          1,
-          1999
+          29666,
+          0
+        ],
+        [
+          0,
+          0,
+          4979
         ]
       ],
       "report": {
         "Gyenge": {
-          "precision": 0.9787798408488063,
-          "recall": 0.9882163899303695,
-          "f1-score": 0.9834754797441365,
-          "support": 1867.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5356.0
         },
         "Közepes": {
-          "precision": 0.9883720930232558,
-          "recall": 0.9799498746867168,
-          "f1-score": 0.9841429650138435,
-          "support": 1995.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 29666.0
         },
         "Erős": {
           "precision": 1.0,
-          "recall": 0.9995,
-          "f1-score": 0.9997499374843711,
-          "support": 2000.0
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4979.0
         },
-        "accuracy": 0.989252814738997,
+        "accuracy": 1.0,
         "macro avg": {
-          "precision": 0.9890506446240207,
-          "recall": 0.9892220882056955,
-          "f1-score": 0.9891227940807837,
-          "support": 5862.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
         },
         "weighted avg": {
-          "precision": 0.9892842525496617,
-          "recall": 0.989252814738997,
-          "f1-score": 0.9892551707358688,
-          "support": 5862.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
         }
       },
       "cv_f1_mean": null,
@@ -74,60 +74,60 @@
     },
     {
       "name": "Döntési fa",
-      "accuracy": 0.9856704196519959,
-      "precision": 0.9854095503659811,
-      "recall": 0.9856789507691742,
-      "f1": 0.9854978830996267,
-      "train_seconds": 6.55,
-      "predict_ms_per_1000": 275.93,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "train_seconds": 19.01,
+      "predict_ms_per_1000": 147.93,
       "confusion": [
         [
-          1842,
-          25,
-          0
-        ],
-        [
-          58,
-          1937,
+          5356,
+          0,
           0
         ],
         [
           0,
-          1,
-          1999
+          29666,
+          0
+        ],
+        [
+          0,
+          0,
+          4979
         ]
       ],
       "report": {
         "Gyenge": {
-          "precision": 0.9694736842105263,
-          "recall": 0.9866095340117836,
-          "f1-score": 0.9779665516325989,
-          "support": 1867.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5356.0
         },
         "Közepes": {
-          "precision": 0.9867549668874173,
-          "recall": 0.9709273182957393,
-          "f1-score": 0.9787771601819101,
-          "support": 1995.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 29666.0
         },
         "Erős": {
           "precision": 1.0,
-          "recall": 0.9995,
-          "f1-score": 0.9997499374843711,
-          "support": 2000.0
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4979.0
         },
-        "accuracy": 0.9856704196519959,
+        "accuracy": 1.0,
         "macro avg": {
-          "precision": 0.9854095503659811,
-          "recall": 0.9856789507691742,
-          "f1-score": 0.9854978830996267,
-          "support": 5862.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
         },
         "weighted avg": {
-          "precision": 0.9857699637259383,
-          "recall": 0.9856704196519959,
-          "f1-score": 0.9856744901790712,
-          "support": 5862.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
         }
       },
       "cv_f1_mean": null,
@@ -135,60 +135,60 @@
     },
     {
       "name": "Logisztikus regresszió",
-      "accuracy": 0.9776526782668031,
-      "precision": 0.977313049060261,
-      "recall": 0.9774594196167082,
-      "f1": 0.9773757653249792,
-      "train_seconds": 6.54,
-      "predict_ms_per_1000": 241.56,
+      "accuracy": 0.9997500062498438,
+      "precision": 0.9994150027114915,
+      "recall": 0.9998319262843762,
+      "f1": 0.9996233405995122,
+      "train_seconds": 25.16,
+      "predict_ms_per_1000": 138.88,
       "confusion": [
         [
-          1810,
-          57,
+          5356,
+          0,
           0
         ],
         [
-          73,
-          1922,
-          0
+          6,
+          29657,
+          3
         ],
         [
           0,
           1,
-          1999
+          4978
         ]
       ],
       "report": {
         "Gyenge": {
-          "precision": 0.9612320764737121,
-          "recall": 0.9694697375468666,
-          "f1-score": 0.9653333333333334,
-          "support": 1867.0
+          "precision": 0.9988810145468109,
+          "recall": 1.0,
+          "f1-score": 0.9994401940660571,
+          "support": 5356.0
         },
         "Közepes": {
-          "precision": 0.9707070707070707,
-          "recall": 0.9634085213032582,
-          "f1-score": 0.9670440251572328,
-          "support": 1995.0
+          "precision": 0.9999662822847124,
+          "recall": 0.9996966223960089,
+          "f1-score": 0.9998314341581822,
+          "support": 29666.0
         },
         "Erős": {
-          "precision": 1.0,
-          "recall": 0.9995,
-          "f1-score": 0.9997499374843711,
-          "support": 2000.0
+          "precision": 0.9993977113029512,
+          "recall": 0.9997991564571199,
+          "f1-score": 0.9995983935742971,
+          "support": 4979.0
         },
-        "accuracy": 0.9776526782668031,
+        "accuracy": 0.9997500062498438,
         "macro avg": {
-          "precision": 0.977313049060261,
-          "recall": 0.9774594196167082,
-          "f1-score": 0.9773757653249792,
-          "support": 5862.0
+          "precision": 0.9994150027114915,
+          "recall": 0.9998319262843762,
+          "f1-score": 0.9996233405995122,
+          "support": 40001.0
         },
         "weighted avg": {
-          "precision": 0.9776835368196907,
-          "recall": 0.9776526782668031,
-          "f1-score": 0.9776578025402175,
-          "support": 5862.0
+          "precision": 0.9997501974637731,
+          "recall": 0.9997500062498438,
+          "f1-score": 0.9997500414179862,
+          "support": 40001.0
         }
       },
       "cv_f1_mean": null,
@@ -196,60 +196,60 @@
     },
     {
       "name": "TF-IDF + logisztikus regresszió",
-      "accuracy": 0.90992835209826,
-      "precision": 0.9126349916575928,
-      "recall": 0.9080596834435669,
-      "f1": 0.9089269934088816,
-      "train_seconds": 3.64,
-      "predict_ms_per_1000": 34.24,
+      "accuracy": 0.8857278568035799,
+      "precision": 0.8798579122349492,
+      "recall": 0.748631978271995,
+      "f1": 0.7898861879307194,
+      "train_seconds": 27.05,
+      "predict_ms_per_1000": 30.72,
       "confusion": [
         [
-          1541,
-          322,
-          4
+          2129,
+          3201,
+          26
         ],
         [
-          138,
-          1828,
-          29
+          513,
+          28958,
+          195
         ],
         [
-          0,
-          35,
-          1965
+          3,
+          633,
+          4343
         ]
       ],
       "report": {
         "Gyenge": {
-          "precision": 0.9178082191780822,
-          "recall": 0.8253883235136583,
-          "f1-score": 0.8691483361534122,
-          "support": 1867.0
+          "precision": 0.8049149338374291,
+          "recall": 0.3974981329350261,
+          "f1-score": 0.5321834770653668,
+          "support": 5356.0
         },
         "Közepes": {
-          "precision": 0.8366132723112129,
-          "recall": 0.9162907268170426,
-          "f1-score": 0.8746411483253589,
-          "support": 1995.0
+          "precision": 0.883081239326665,
+          "recall": 0.9761342951527001,
+          "f1-score": 0.9272791315764194,
+          "support": 29666.0
         },
         "Erős": {
-          "precision": 0.9834834834834835,
-          "recall": 0.9825,
-          "f1-score": 0.9829914957478739,
-          "support": 2000.0
+          "precision": 0.9515775635407537,
+          "recall": 0.8722635067282587,
+          "f1-score": 0.910195955150372,
+          "support": 4979.0
         },
-        "accuracy": 0.90992835209826,
+        "accuracy": 0.8857278568035799,
         "macro avg": {
-          "precision": 0.9126349916575928,
-          "recall": 0.9080596834435669,
-          "f1-score": 0.9089269934088816,
-          "support": 5862.0
+          "precision": 0.8798579122349492,
+          "recall": 0.748631978271995,
+          "f1-score": 0.7898861879307194,
+          "support": 40001.0
         },
         "weighted avg": {
-          "precision": 0.912582461691115,
-          "recall": 0.90992835209826,
-          "f1-score": 0.9098587557153293,
-          "support": 5862.0
+          "precision": 0.881140899486701,
+          "recall": 0.8857278568035799,
+          "f1-score": 0.8722507707607777,
+          "support": 40001.0
         }
       },
       "cv_f1_mean": null,
@@ -257,60 +257,60 @@
     },
     {
       "name": "Alapmodell(csak hossz)",
-      "accuracy": 0.8381098601160014,
-      "precision": 0.8558990122331555,
-      "recall": 0.8376108992352332,
-      "f1": 0.8372740188973068,
-      "train_seconds": 0.03,
-      "predict_ms_per_1000": 0.97,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "train_seconds": 0.23,
+      "predict_ms_per_1000": 1.0,
       "confusion": [
         [
-          1533,
-          321,
-          13
+          5356,
+          0,
+          0
         ],
         [
-          13,
-          1380,
-          602
+          0,
+          29666,
+          0
         ],
         [
           0,
           0,
-          2000
+          4979
         ]
       ],
       "report": {
         "Gyenge": {
-          "precision": 0.9915912031047865,
-          "recall": 0.821103374397429,
-          "f1-score": 0.8983299150307648,
-          "support": 1867.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5356.0
         },
         "Közepes": {
-          "precision": 0.8112874779541446,
-          "recall": 0.6917293233082706,
-          "f1-score": 0.7467532467532467,
-          "support": 1995.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 29666.0
         },
         "Erős": {
-          "precision": 0.7648183556405354,
+          "precision": 1.0,
           "recall": 1.0,
-          "f1-score": 0.866738894907909,
-          "support": 2000.0
+          "f1-score": 1.0,
+          "support": 4979.0
         },
-        "accuracy": 0.8381098601160014,
+        "accuracy": 1.0,
         "macro avg": {
-          "precision": 0.8558990122331555,
-          "recall": 0.8376108992352332,
-          "f1-score": 0.8372740188973068,
-          "support": 5862.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
         },
         "weighted avg": {
-          "precision": 0.85285841112184,
-          "recall": 0.8381098601160014,
-          "f1-score": 0.835965961864719,
-          "support": 5862.0
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40001.0
         }
       },
       "cv_f1_mean": null,
@@ -319,60 +319,60 @@
   ],
   "rule_based": {
     "name": "Szabályalapú",
-    "accuracy": 0.827021494370522,
-    "precision": 0.877018081889949,
-    "recall": 0.8305764411027569,
-    "f1": 0.8134976449095608,
+    "accuracy": 0.762980925476863,
+    "precision": 0.7231050196925167,
+    "recall": 0.8812129553531786,
+    "f1": 0.7477296620967101,
     "train_seconds": 0.0,
-    "predict_ms_per_1000": 346.6,
+    "predict_ms_per_1000": 214.94,
     "confusion": [
       [
-        1867,
+        5356,
         0,
         0
       ],
       [
-        947,
-        981,
-        67
+        7878,
+        20405,
+        1383
       ],
       [
-        0,
-        0,
-        2000
+        25,
+        195,
+        4759
       ]
     ],
     "report": {
       "Gyenge": {
-        "precision": 0.6634683724235964,
+        "precision": 0.40395203258164264,
         "recall": 1.0,
-        "f1-score": 0.7976928006836146,
-        "support": 1867.0
+        "f1-score": 0.5754499059897932,
+        "support": 5356.0
       },
       "Közepes": {
-        "precision": 1.0,
-        "recall": 0.4917293233082707,
-        "f1-score": 0.6592741935483871,
-        "support": 1995.0
+        "precision": 0.9905339805825243,
+        "recall": 0.6878244454931571,
+        "f1-score": 0.811880794174989,
+        "support": 29666.0
       },
       "Erős": {
-        "precision": 0.9675858732462506,
-        "recall": 1.0,
-        "f1-score": 0.9835259404966806,
-        "support": 2000.0
+        "precision": 0.7748290459133833,
+        "recall": 0.9558144205663788,
+        "f1-score": 0.8558582861253484,
+        "support": 4979.0
       },
-      "accuracy": 0.827021494370522,
+      "accuracy": 0.762980925476863,
       "macro avg": {
-        "precision": 0.877018081889949,
-        "recall": 0.8305764411027569,
-        "f1-score": 0.8134976449095608,
-        "support": 5862.0
+        "precision": 0.7231050196925167,
+        "recall": 0.8812129553531786,
+        "f1-score": 0.7477296620967101,
+        "support": 40001.0
       },
       "weighted avg": {
-        "precision": 0.8817583073707532,
-        "recall": 0.827021494370522,
-        "f1-score": 0.8139877782324637,
-        "support": 5862.0
+        "precision": 0.8851434207662604,
+        "recall": 0.762980925476863,
+        "f1-score": 0.7856974511410882,
+        "support": 40001.0
       }
     },
     "cv_f1_mean": null,
@@ -381,95 +381,95 @@
   "feature_importances": [
     [
       "hossz",
-      0.14567518622070944
-    ],
-    [
-      "shannon_entropia",
-      0.12763253677192568
-    ],
-    [
-      "specialis_arany",
-      0.12505159873019306
-    ],
-    [
-      "egyedi_karakterek",
-      0.11672429207308606
-    ],
-    [
-      "specialis",
-      0.10491953098966396
+      0.33176170766139296
     ],
     [
       "karakterosztalyok",
-      0.07543125496671235
+      0.11782361684275415
     ],
     [
-      "szamjegy_arany",
-      0.044708601055390866
+      "shannon_entropia",
+      0.1041045787035584
     ],
     [
       "nagybetuk",
-      0.040827545089809764
+      0.0891320612086441
     ],
     [
-      "szamjegyek",
-      0.03506112931040875
-    ],
-    [
-      "kisbetu_arany",
-      0.03245035686814567
+      "egyedi_karakterek",
+      0.08730164920365302
     ],
     [
       "nagybetu_arany",
-      0.02648348423373566
-    ],
-    [
-      "evszamot_tartalmaz",
-      0.026385676333578637
+      0.07377773142407452
     ],
     [
       "kisbetuk",
-      0.025561842208523054
+      0.04381466786571655
     ],
     [
-      "szammal_vegzodik",
-      0.014645482813539713
+      "szamjegyek",
+      0.03506877513142251
     ],
     [
-      "nagybetuvel_kezd",
-      0.013903647365731497
+      "kisbetu_arany",
+      0.032517724342880173
     ],
     [
-      "maganhangzo_arany",
-      0.013639556324666877
+      "szamjegy_arany",
+      0.028297276522395384
     ],
     [
       "egyedi_arany",
-      0.011577082632178852
+      0.022368980590830326
     ],
     [
-      "csak_betu",
-      0.009707130847425426
+      "nagybetuvel_kezd",
+      0.013399311667920884
     ],
     [
-      "nem_ascii",
-      0.006215061863080114
+      "szammal_vegzodik",
+      0.00607015640109027
+    ],
+    [
+      "specialis_arany",
+      0.005696731368492066
+    ],
+    [
+      "specialis",
+      0.004389301309038727
+    ],
+    [
+      "maganhangzo_arany",
+      0.001704930651476393
     ],
     [
       "leghosszabb_ismetles",
-      0.0015708337175233415
-    ],
-    [
-      "csak_szam",
-      0.0014900650590131998
-    ],
-    [
-      "billentyuzetmintak",
-      0.00027410324027625347
+      0.0012949763801538279
     ],
     [
       "sorozatok",
-      6.400128468174187e-05
+      0.0006894385119258663
+    ],
+    [
+      "evszamot_tartalmaz",
+      0.0004523077200453732
+    ],
+    [
+      "csak_betu",
+      0.0001334174534579759
+    ],
+    [
+      "billentyuzetmintak",
+      9.291560330867865e-05
+    ],
+    [
+      "nem_ascii",
+      8.696364278356879e-05
+    ],
+    [
+      "csak_szam",
+      2.0779792984210345e-05
     ]
   ]
 }
