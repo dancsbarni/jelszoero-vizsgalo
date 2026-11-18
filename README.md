@@ -140,3 +140,14 @@ ellenőrzéseket az [`AI_USAGE.md`](AI_USAGE.md) dokumentálja.
 
 A program a beírt jelszavakat nem menti, nem naplózza és nem küldi el sehova;
 minden számítás helyben történik.
+
+A Vizsgálat oldalon (vagy a --nev és --szuletes kapcsolókkal) megadható a
+felhasználó neve és születési dátuma; ha a jelszó ezeket tartalmazza, a program
+személyes adatként jelzi, és gyengébbnek értékeli:
+```bash
+python main.py --cli "anna0415!Qx" --nev "Kovács Anna" --szuletes 1999.04.15
+```
+## Készítők
+- Dancsházi Barnabás – alapprojekt, személyes adat felismerés, szólisták,
+ keresztvalidáció
+- Baranyi Zsombor – személyes adatok a felületen és parancssorban
