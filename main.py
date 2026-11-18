@@ -52,7 +52,8 @@ def main() -> int:
     args = parser.parse_args()
     try:
         if args.cli is not None:
-            return cli(args.cli or None)
+            from jelszoero.rules import personal_from_fields
+            return cli(args.cli or None, personal_from_fields(args.nev, args.szuletes))
         from jelszoero.gui import run
     except ModuleNotFoundError as exc:
         if exc.name and exc.name.startswith(("tkinter", "_tkinter")):

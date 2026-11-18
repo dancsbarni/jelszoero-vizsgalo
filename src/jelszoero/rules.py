@@ -299,22 +299,22 @@ def find_personal_info(password: str, personal: list[str]) -> list[Match]:
     return matches
 
 def personal_from_fields(name: str = "", birth: str = "") -> list[str]:
- """A felületen vagy parancssorban megadott név és születési dátum
- átalakítása a find_personal_info() által keresett elemek listájává.
- - A név minden részét külön keresi ("Kovács Anna" -> "Kovács", "Anna").
- - A dátumból a teljes számsort, az évet és a hónap+nap részt is
- ("1999.04.15" -> "19990415", "1999", "0415").
- """
- items: list[str] = []
- for part in name.replace("-", " ").split():
-    if len(part) >= 3:
-        items.append(part)
-        digits = "".join(c for c in birth if c.isdigit())
- if len(digits) == 8: # ééééhhnn
-    items += [digits, digits[:4], digits[4:]]
- elif len(digits) == 4: # csak évszám
-    items.append(digits)
- return items   
+    """A felületen vagy parancssorban megadott név és születési dátum
+    átalakítása a find_personal_info() által keresett elemek listájává.
+    - A név minden részét külön keresi ("Kovács Anna" -> "Kovács", "Anna").
+    - A dátumból a teljes számsort, az évet és a hónap+nap részt is
+    ("1999.04.15" -> "19990415", "1999", "0415").
+    """
+    items: list[str] = []
+    for part in name.replace("-", " ").split():
+        if len(part) >= 3:
+            items.append(part)
+            digits = "".join(c for c in birth if c.isdigit())
+    if len(digits) == 8: # ééééhhnn
+        items += [digits, digits[:4], digits[4:]]
+    elif len(digits) == 4: # csak évszám
+        items.append(digits)
+    return items   
 
 
 def find_all_matches(password: str, personal: list[str] | None = None) -> list[Match]:
